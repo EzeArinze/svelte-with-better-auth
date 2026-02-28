@@ -7,6 +7,8 @@
 
 <ol>
 	{#each await get_all_post() as post (post.id)}
-		<li>{post.title}</li>
+		<li>
+			<a href={resolve('/admin/post/[id]', { id: post.id })}>{post.title}</a>
+		</li>
 	{/each}
 </ol>
