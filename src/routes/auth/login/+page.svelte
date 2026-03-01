@@ -6,28 +6,20 @@
 
 	let error = $state('');
 
-	const handleSignUp = async (e: Event) => {
+	const handleSignIn = async (e: Event) => {
 		e.preventDefault();
 		const formData = e.target as HTMLFormElement;
 
 		const email = formData.email.value;
-		const username = formData.username.value;
 		const password = formData.password.value;
-		const password_confirm = formData.password_confirm.value;
 
-		if (password !== password_confirm) {
-			error = 'Password does not match';
-			return;
-		}
-
-		if (!password || !email || !username || !password_confirm) {
+		if (!password || !email) {
 			error = 'All field is required';
 			return;
 		}
 
-		await authClient.signUp.email(
+		await authClient.signIn.email(
 			{
-				name: username,
 				email,
 				password,
 				callbackURL: '/'
@@ -43,14 +35,8 @@
 </script>
 
 <div class="box-1">
-	<h1>Sign Up</h1>
-	<form onsubmit={handleSignUp}>
-		<div class="row">
-			<label>
-				Username
-				<input type="text" id="username" />
-			</label>
-		</div>
+	<h1>Sign In</h1>
+	<form onsubmit={handleSignIn}>
 		<div class="row">
 			<label>
 				Email
@@ -63,17 +49,12 @@
 				<input type="password" id="password" />
 			</label>
 		</div>
-		<div class="row">
-			<label>
-				Confirm Password
-				<input type="password" id="password_confirm" />
-			</label>
-		</div>
+
 		{#if error}
 			<p style:color="var(--red;)">{error}</p>
 		{/if}
-		<button type="submit">Sign Up</button>
+		<button type="submit">Sign in</button>
 	</form>
 </div>
 
-<p>Already have an account: <a href={resolve('/auth/login')}>login</a></p>
+<p>Create account: <a href={resolve('/auth/signup')}>sign-up</a></p>
