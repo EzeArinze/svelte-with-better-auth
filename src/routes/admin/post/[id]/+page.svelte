@@ -7,10 +7,6 @@
 	const post = await get_post_by_id(id!);
 </script>
 
-{#if post}
-	{post.title}
-{/if}
-
 <form {...update_post}>
 	<input {...update_post.fields.id.as('text')} hidden value={post?.id} />
 
