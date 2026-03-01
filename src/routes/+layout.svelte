@@ -29,7 +29,7 @@
 
 <header>
 	<div class="layout-readable center split">
-		<a href={resolve('/')}>Blog</a>
+		<a class="blog" href={resolve('/')}>Blog</a>
 
 		{#if user?.id}
 			<button onclick={logout}>logout</button>
@@ -44,5 +44,17 @@
 <style>
 	header {
 		border: 1px solid var(--tint-or-shade);
+		padding-block: var(--vs-s);
+		.layout-readable {
+			align-items: center;
+		}
+	}
+
+	.blog {
+		margin-top: 0.5rem;
+	}
+
+	main {
+		padding-block: var(--vs-m);
 	}
 </style>

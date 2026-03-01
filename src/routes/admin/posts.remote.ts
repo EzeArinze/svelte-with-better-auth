@@ -25,7 +25,7 @@ export const create_post = form(
 			headers: event.request.headers
 		});
 
-		if (!session?.user.id) {
+		if (session?.user.id !== 'admin') {
 			error(401, 'Unauthorized');
 		}
 
@@ -54,7 +54,7 @@ export const update_post = form(
 			headers: event.request.headers
 		});
 
-		if (!session?.user.id) {
+		if (session?.user.id !== 'admin') {
 			error(401, 'Unauthorized');
 		}
 
